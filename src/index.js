@@ -1,4 +1,4 @@
-const track = require('./tracker')
+const track = require('./../tracker')
 const data = require('./data')
 
 track('index')

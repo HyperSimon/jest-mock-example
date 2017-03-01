@@ -1,13 +1,13 @@
-const track = require('./tracker')
-const mod = require('.')
+const track = require('../../tracker')
 
-jest.mock('./data', () => {
+const mod = require('../data')
+jest.mock('../data', () => {
   track('data-mock')
-  return {isMock: true}
+  return { isMock: true }
 })
 
 test('use mock', () => {
-  expect(mod).toEqual({data: {isMock: true}})
+  expect(mod).toEqual({ isMock: true })
 
   // here's the key. If you were to follow the require codepath, the `data.js` module _should_ add itself to the tracker
   // before the call to `jest.mock` even happens, but I'm guessing Jest does some special stuff to make it so when you
@@ -16,7 +16,6 @@ test('use mock', () => {
   expect(track.tracks.includes('data')).toBe(false)
 
   expect(track.tracks).toEqual([
-    'data-mock',
-    'index'
+    'data-mock'
   ])
 })
