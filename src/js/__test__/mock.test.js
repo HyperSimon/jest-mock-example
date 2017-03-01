@@ -1,10 +1,10 @@
-const track = require('../../tracker')
+const track = require('../../../tracker')
 
-const mod = require('../data')
 jest.mock('../data', () => {
   track('data-mock')
   return { isMock: true }
 })
+const mod = require('../data')
 
 test('use mock', () => {
   expect(mod).toEqual({ isMock: true })
